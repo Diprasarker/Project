@@ -86,7 +86,28 @@ public class Account {
 	public void getCheckingWithdrawInput() {
 		boolean end = false;
 		while (!end) {
-try {
+			try {
+				System.out.println("\nCurrent Checkings Account Balance: " + moneyFormat.format(checkingBalance));
+				System.out.print("\nAmount you want to withdraw from Checkings Account: ");
+				double amount = input.nextDouble();
+				if ((checkingBalance - amount) >= 0 && amount >= 0) {
+					calcCheckingWithdraw(amount);
+					System.out.println("\nCurrent Checkings Account Balance: " + moneyFormat.format(checkingBalance));
+					end = true;
+				} else {
+					System.out.println("\nBalance Cannot be Negative.");
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("\nInvalid Choice.");
+				input.next();
+			}
+		}
+	}
+
+	public void getsavingWithdrawInput() {
+		boolean end = false;
+		while (!end) {
+			try {
 				System.out.println("\nCurrent Savings Account Balance: " + moneyFormat.format(savingBalance));
 				System.out.print("\nAmount you want to withdraw from Savings Account: ");
 				double amount = input.nextDouble();
